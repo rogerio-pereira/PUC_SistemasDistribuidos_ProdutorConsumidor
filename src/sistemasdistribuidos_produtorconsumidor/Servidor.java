@@ -13,31 +13,41 @@ import java.util.ArrayList;
  */
 public class Servidor extends Thread implements InterfaceRemota
 {
-    ArrayList<Requisicao> buffer;
+    Requisicao buffer[];
 
     public Servidor() {
-        this.buffer = new ArrayList<>();
+        buffer = new Requisicao[4];
     }
 
     @Override
     public boolean requisita(Requisicao r) 
     {
-        System.out.println(r.toString());
+        //int posicao = posicaoBuffer;
+        
         try {
-            this.buffer.add(r);
-            
-            return true;
+            if(podeProduzir()) {
+                //sim
+                buffer[posicao%4] = r;
+                return true;
+            }
+            else
+                return false;
         } catch (Exception e) {
             System.out.println("Erro\nCausa:\n"+e.getCause()+"\n"+"Mensagem:\n"+e.getMessage());
             return false;
         }
     }
     
+    public boolean podeProduzir()
+    {
+        return true;
+        
+        return false;
+    }
+    
     public String consome(int i)
     {
-        Requisicao req = (Requisicao)this.buffer.get(i);
-        this.buffer.remove(i);
-        
+        Requisicao req = buffer[i];
         String ret = req.toString();
         
         return ret;
