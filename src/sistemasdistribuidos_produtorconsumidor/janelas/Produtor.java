@@ -13,45 +13,17 @@ import sistemasdistribuidos_produtorconsumidor.Requisicao;
  *
  * @author farofa
  */
-public class Cliente extends javax.swing.JFrame {
+public class Produtor extends javax.swing.JFrame {
     private static InterfaceRemota server;
     
-    public void enviaRequisicao(String msg)
-    {        
-        try {
-            Requisicao req = new Requisicao(msg);
-            
-            if(server.podeProduzir(req))
-                setLog("Envio OK", false);
-            else
-                setLog("Buffer cheio", true);
-                
-        } catch (Exception ex) {
-            setLog("Mensagem:\n"+ex.getMessage(), true);
-        }
-    }
-    
-    public static void setLog(String msg, boolean erro)
-    {
-        if(!textLog.getText().isEmpty())
-            textLog.append("\n\n");
-        
-        if(erro == true)
-            textLog.append("Erro:\n");
-        
-        textLog.append(msg);
-        textLog.setCaretPosition(textLog.getDocument().getLength());
-    }
-       
-
     /**
      * Creates new form Cliente
      */
-    public Cliente(){
+    public Produtor(String host, String endereco){
         initComponents();
                                                     
         try {
-            server = (InterfaceRemota) Naming.lookup("rmi://localhost/enderecoObjeto");
+            server = (InterfaceRemota) Naming.lookup("rmi://"+host+"/"+endereco);
         } catch (Exception ex) {
             setLog("Mensagem:\n"+ex.getMessage(), true);
         }
@@ -186,46 +158,31 @@ public class Cliente extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_botaoEnviarActionPerformed
 
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]){
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
+    public void enviaRequisicao(String msg)
+    {        
         try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(Cliente.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(Cliente.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(Cliente.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(Cliente.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            Requisicao req = new Requisicao(msg);
+            
+            if(server.podeProduzir(req))
+                setLog("Envio OK", false);
+            else
+                setLog("Buffer cheio", true);
+                
+        } catch (Exception ex) {
+            setLog("Mensagem:\n"+ex.getMessage(), true);
         }
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                try {
-                    new Cliente().setVisible(true);
-                } catch (Exception ex) {
-                    setLog("Mensagem:\n"+ex.getMessage(), true);
-                }
-            }
-        });
+    }
+    
+    public static void setLog(String msg, boolean erro)
+    {
+        if(!textLog.getText().isEmpty())
+            textLog.append("\n\n");
+        
+        if(erro == true)
+            textLog.append("Erro:\n");
+        
+        textLog.append(msg);
+        textLog.setCaretPosition(textLog.getDocument().getLength());
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

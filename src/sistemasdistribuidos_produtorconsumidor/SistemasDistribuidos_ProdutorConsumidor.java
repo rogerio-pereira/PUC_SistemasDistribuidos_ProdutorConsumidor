@@ -9,7 +9,7 @@ import java.net.MalformedURLException;
 import java.rmi.NotBoundException;
 import java.rmi.RemoteException;
 import java.rmi.registry.Registry;
-import sistemasdistribuidos_produtorconsumidor.janelas.Cliente;
+import sistemasdistribuidos_produtorconsumidor.janelas.Produtor;
 
 /**
  *
