@@ -17,20 +17,8 @@ import java.util.logging.Logger;
  *
  * @author farofa
  */
-public class Cliente{
+public class Consome{
     private static InterfaceRemota server;
-    private static Requisicao req;
-    
-    public void produz(String msg)
-    {
-        Requisicao req = new Requisicao(msg);
-        
-        try {
-            server.podeProduzir(req);
-        } catch (RemoteException e) {
-            System.out.println("Erro\nCausa:\n"+e.getCause()+"\n"+"Mensagem:\n"+e.getMessage());
-        }
-    }
     
     /**
      * @param args the command line arguments
@@ -41,6 +29,6 @@ public class Cliente{
         Requisicao req = new Requisicao("teste");
         
         server = (InterfaceRemota) Naming.lookup("rmi://localhost/enderecoObjeto");
-        server.podeProduzir(req);
+        server.consome();
     }
 }

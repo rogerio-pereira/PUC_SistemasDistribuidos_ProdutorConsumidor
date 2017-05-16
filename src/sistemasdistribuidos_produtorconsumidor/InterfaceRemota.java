@@ -5,10 +5,15 @@
  */
 package sistemasdistribuidos_produtorconsumidor;
 
+import java.rmi.Remote;
+import java.rmi.RemoteException;
+
 /**
  *
  * @author farofa
  */
-public interface InterfaceRemota {
-    public boolean requisita(Requisicao r);
+public interface InterfaceRemota extends Remote{
+    public boolean requisita(Requisicao r) throws RemoteException;
+    public boolean podeProduzir(Requisicao r) throws RemoteException;
+    public void consome() throws RemoteException;
 }
