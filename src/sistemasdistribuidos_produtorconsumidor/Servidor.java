@@ -58,29 +58,17 @@ public class Servidor extends UnicastRemoteObject implements InterfaceRemota
     @Override
     public void consome() throws RemoteException
     {
-        //THREAD
-        /*int op = 1;
-        do {
-            switch(op) {
-                case 0: break;
-                case 1: {*/
-                try {
-                    if(consumido-produzido < 0) {
-                        Requisicao req = buffer[consumido%4];
-                        System.out.println(req.toString()+"\n");
-                        consumido++;
-                        //break;
-                    }
-                    else
-                        System.out.println("Buffer Vazio"+"\n");
-                } catch (Exception e) {
-                    System.out.println("Erro\nCausa:\n"+e.getCause()+"\n"+"Mensagem:\n"+e.getMessage());
-                }
-                    
-                /*}
-                default:
-                    System.out.println("Digite 0 para sair e 1 para consumir");
-            }    
-        }while(op!=0);*/
+        try {
+            if(consumido-produzido < 0) {
+                Requisicao req = buffer[consumido%4];
+                System.out.println(req.toString()+"\n");
+                consumido++;
+                //break;
+            }
+            else
+                System.out.println("Buffer Vazio"+"\n");
+        } catch (Exception e) {
+            System.out.println("Erro\nCausa:\n"+e.getCause()+"\n"+"Mensagem:\n"+e.getMessage());
+        }
     }
 }

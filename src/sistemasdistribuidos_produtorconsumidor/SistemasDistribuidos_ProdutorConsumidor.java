@@ -9,6 +9,7 @@ import java.net.MalformedURLException;
 import java.rmi.NotBoundException;
 import java.rmi.RemoteException;
 import java.rmi.registry.Registry;
+import sistemasdistribuidos_produtorconsumidor.janelas.Cliente;
 
 /**
  *
@@ -21,10 +22,8 @@ public class SistemasDistribuidos_ProdutorConsumidor {
     /**
      * @param args the command line arguments
      */
-    public static void main(String[] args)  throws RemoteException {
+    public static void main(String[] args)  throws RemoteException, NotBoundException, MalformedURLException {
         try {
-            //Requisicao req = new Requisicao(null);
-        
             Servidor server = new Servidor();
 
             registro = java.rmi.registry.LocateRegistry.createRegistry(1099);
@@ -32,7 +31,6 @@ public class SistemasDistribuidos_ProdutorConsumidor {
         } catch (Exception e) {
             System.out.println("Mensagem: "+e.getMessage()+"\nCausa: "+e.getCause());
         }
-        
     }
     
 }
