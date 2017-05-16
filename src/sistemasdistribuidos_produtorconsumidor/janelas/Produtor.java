@@ -63,7 +63,7 @@ public class Produtor extends javax.swing.JFrame {
             .addGap(0, 175, Short.MAX_VALUE)
         );
 
-        jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder("Cliente"));
+        jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder("Produtor"));
 
         jLabel1.setText("Mensagem");
 
@@ -104,7 +104,7 @@ public class Produtor extends javax.swing.JFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        jPanel4.setBorder(javax.swing.BorderFactory.createTitledBorder("Log"));
+        jPanel4.setBorder(javax.swing.BorderFactory.createTitledBorder("Logs"));
 
         textLog.setEditable(false);
         textLog.setColumns(20);
@@ -173,7 +173,7 @@ public class Produtor extends javax.swing.JFrame {
         }
     }
     
-    public static void setLog(String msg, boolean erro)
+    public void setLog(String msg, boolean erro)
     {
         if(!textLog.getText().isEmpty())
             textLog.append("\n\n");
@@ -194,7 +194,7 @@ public class Produtor extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel4;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
-    private static javax.swing.JTextArea textLog;
+    private javax.swing.JTextArea textLog;
     private javax.swing.JTextArea textMensagem;
     // End of variables declaration//GEN-END:variables
 }

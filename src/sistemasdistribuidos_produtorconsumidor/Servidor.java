@@ -34,10 +34,8 @@ public class Servidor extends UnicastRemoteObject implements InterfaceRemota
             buffer[produzido % 4] = r;
             produzido++;
             autProd++;
-            System.out.println("Requisicao OK\n");
             return true;
         } catch (Exception e) {
-            System.out.println("Erro\nCausa:\n"+e.getCause()+"\n"+"Mensagem:\n"+e.getMessage());
             return false;
         }
     }
@@ -45,30 +43,27 @@ public class Servidor extends UnicastRemoteObject implements InterfaceRemota
     @Override
     public boolean podeProduzir(Requisicao r) throws RemoteException
     {
-        System.out.println("Produzido: "+produzido+" - Consumido: "+consumido);
         if(autProd-consumido < 4) {
             return requisita(r);
         }
         else {
-            System.out.println("Buffer Cheio\n");
             return false;
         }
     }
     
     @Override
-    public void consome() throws RemoteException
+    public String consome() throws RemoteException
     {
-        try {
-            if(consumido-produzido < 0) {
-                Requisicao req = buffer[consumido%4];
-                System.out.println(req.toString()+"\n");
-                consumido++;
-                //break;
-            }
-            else
-                System.out.println("Buffer Vazio"+"\n");
-        } catch (Exception e) {
-            System.out.println("Erro\nCausa:\n"+e.getCause()+"\n"+"Mensagem:\n"+e.getMessage());
+        String msg;
+        
+        if(consumido-produzido < 0) {
+            Requisicao req = buffer[consumido%4];
+            msg = req.toString();
+            consumido++;
         }
+        else
+            msg = "Buffer Vazio";
+
+        return msg;
     }
 }

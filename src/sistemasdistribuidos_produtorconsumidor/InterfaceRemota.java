@@ -15,5 +15,5 @@ import java.rmi.RemoteException;
 public interface InterfaceRemota extends Remote{
     public boolean requisita(Requisicao r) throws RemoteException;
     public boolean podeProduzir(Requisicao r) throws RemoteException;
-    public void consome() throws RemoteException;
+    public String consome() throws RemoteException;
 }

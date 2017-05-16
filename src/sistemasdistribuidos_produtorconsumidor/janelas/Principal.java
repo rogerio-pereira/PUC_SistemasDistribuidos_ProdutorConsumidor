@@ -123,6 +123,11 @@ public class Principal extends javax.swing.JFrame {
 
         botaoConsumidor.setText("Consumidor");
         botaoConsumidor.setEnabled(false);
+        botaoConsumidor.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botaoConsumidorActionPerformed(evt);
+            }
+        });
         jPanel3.add(botaoConsumidor);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -168,6 +173,10 @@ public class Principal extends javax.swing.JFrame {
             System.out.println("Mensagem: "+e.getMessage()+"\nCausa: "+e.getCause());
         }
     }//GEN-LAST:event_botaoServidorActionPerformed
+
+    private void botaoConsumidorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoConsumidorActionPerformed
+        new Consumidor(this.host, this.endereco).setVisible(true);
+    }//GEN-LAST:event_botaoConsumidorActionPerformed
 
     /**
      * @param args the command line arguments
